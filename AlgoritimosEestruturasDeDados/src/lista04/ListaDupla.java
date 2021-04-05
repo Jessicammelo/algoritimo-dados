@@ -1,6 +1,5 @@
 package lista04;
 
-import lista03.NoLista;
 
 public class ListaDupla<T> {
 
@@ -15,7 +14,7 @@ public class ListaDupla<T> {
 	}
 
 	public void inserir(T valor) {
-		NoListaDupla<T> novo = new NoListaDupla();
+		NoListaDupla<T> novo = new NoListaDupla<T>();
 		novo.getInfo = valor;
 		novo.setProximo(primeiro);
 		this.primeiro = novo;

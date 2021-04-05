@@ -90,7 +90,10 @@ public class App {
 //	System.out.println(testes.obterElemento(0).getNome());
 //		
 //	}
-//	
-//	
+//	public void testPilhaVazia()
+	//	{
+		//	p = new PilhaVetor<> (5);
+			//assertEquals(true, p.estaVazia());
+		//}
 	}
 }
