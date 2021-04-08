@@ -2,7 +2,7 @@ package lista06;
 
 import lista05.PilhaVaziaException;
 
-public class FilaVetor<T> {
+public class FilaVetor<T> implements Fila<T> {
 
 	private T[] info;
 	
@@ -12,11 +12,16 @@ public class FilaVetor<T> {
 	
 	private int inicio;
 	
+	// construtor
 	public FilaVetor(int limite){
 		info = (T[]) new Object[limite];
 		this.limite = limite;
 		this.tamanho = 0;
 		this.inicio = 0;
+	}
+	
+	public int getLimite() {
+		return limite;
 	}
 	
 	public void inserir(T valor) {
@@ -53,10 +58,33 @@ public class FilaVetor<T> {
 	}
 	
 	public FilaVetor<T> criarFilaConcatenada(FilaVetor<T> f2){
-		return f2;
+		FilaVetor<T> f3 = new FilaVetor<T>(this.limite + f2.limite);
+		int indice;
+		
+		indice = this.inicio;
+		for ( int i = 0; i < this.tamanho;i++) {
+			f3.inserir(this.info[indice]);
+			indice = (indice + 1) % this.limite;
+		}
+		indice = f2.inicio;
+		for ( int i = 0; i < f2.tamanho;i++) {
+			f3.inserir(f2.info[indice]);
+			indice = (indice + 1) % f2.limite;
+		}
+		return f3;
 	}
 	
 	public String toString() {
+		String retorno = "";
+		
+		int indice = inicio;
+		for ( int i = 0; i< tamanho ; i++) {
+			if (i>0) {
+				return  ",";
+			}
+			retorno = retorno + info[indice];
+			
+		}
 		return toString();
 	}
 	

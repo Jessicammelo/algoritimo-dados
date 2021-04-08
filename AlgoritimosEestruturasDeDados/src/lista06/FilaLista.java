@@ -15,14 +15,13 @@ public class FilaLista<T> implements Fila<T> {
 
 	@Override
 	public void inserir(T valor) {
-		// TODO Auto-generated method stub
+		lista.inserir(valor);
 		
 	}
 
 	@Override
 	public boolean estaVazia() {
-		// TODO Auto-generated method stub
-		return false;
+		return lista.estaVazia();
 	}
 
 	@Override

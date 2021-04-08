@@ -2,10 +2,12 @@ package lista03;
 
 public class ListaEncadeada<T> {
 
-	private NoLista primeiro;
+	private NoLista<T> primeiro;
+	private NoLista<T> ultimo;
 
 	public ListaEncadeada() {
 		primeiro = null;
+		ultimo = null;
 	}
 
 	public NoLista<T> getPrimeiro() {
@@ -14,11 +16,34 @@ public class ListaEncadeada<T> {
 
 	public void inserir(T info) {
 		NoLista<T> novo = new NoLista();
-		novo.getInfo = info;
+		novo.setInfo(info);
 		novo.setProximo(primeiro);
 		this.primeiro = novo;
 	}
-
+	
+	public void inserir(int indice, T valor) {
+		int loop = 0;
+		NoLista<T> noAnterior = null;
+		NoLista<T> noProximo = primeiro;
+		while (loop < indice) {
+			noAnterior = noProximo;
+			noProximo = noProximo.getProximo();
+			if (noProximo == null) {
+				break;
+			}
+			loop ++;
+		}
+		NoLista<T> vl = new NoLista<T>();
+		vl.setInfo(valor);
+		if (noAnterior == null) {
+			primeiro = vl;
+		}
+		noAnterior.setProximo(vl);
+		vl.setProximo(noProximo);
+	}
+	
+// variavel primeiro 
+	//
 	public boolean estaVazia() {
 		return this.primeiro == null;
 
