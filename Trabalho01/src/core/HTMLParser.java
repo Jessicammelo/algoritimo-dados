@@ -5,15 +5,8 @@ import lista05.PilhaLista;
 
 public class HTMLParser {
 	
-	public Pilha<String> getHTMLTags() {
+	public Pilha<String> getHTMLTags(String html) {
 		Pilha<String> tags = new PilhaLista<>();
-		String html = "<html>"
-				+ "<body>"
-				+ "<h1>Aqui cabeçalho do arquivo</h1>"
-				+ "<p>Meu parágrafo da página web.</p>"
-				+ "<p>Meu segundo parágrafo.</p>"
-				+ "</body>"
-				+ "</html> ";
 		String[] probabilityTags = html.split("<");
 		for(String probabilityTag : probabilityTags) {
 			String[] tagsStr = probabilityTag.split("\\>|\\/>");
