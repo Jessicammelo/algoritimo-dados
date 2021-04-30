@@ -1,8 +1,8 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import core.HTMLParser;
@@ -10,10 +10,7 @@ import core.ReadFile;
 import core.TagCounter;
 import model.TagSumarization;
 
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
@@ -72,9 +69,13 @@ public class Trabalho01 extends JFrame {
 		DefaultTableModel model = new DefaultTableModel();
 		table.setModel(model);
 		model.addColumn("Tag");
-		model.addColumn("Tag2");
-		table.setBounds(10, 137, 414, 113);
-		contentPane.add(table);
+		model.addColumn("Número de recorrência");
+		
+		JScrollPane scroll_table= new JScrollPane(table);            // add table to scroll panel
+	    scroll_table.setBounds(10, 137, 414, 113);
+	    scroll_table.setVisible(true);
+	    
+		contentPane.add(scroll_table);
 
 		JButton btnNewButton = new JButton("Analisar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -84,8 +85,11 @@ public class Trabalho01 extends JFrame {
 					HTMLParser parser = new HTMLParser();
 					TagCounter counter = new TagCounter();
 					counter.counter(parser.getHTMLTags(ReadFile.readFile(textField.getText())), null);
-					for (TagSumarization sumarization : counter.sumarization) {
-						model.addRow(new Object[] { sumarization.getTagName(), sumarization.getTagCounter() });
+					for (int i = 0; i < counter.sumarization.getTamanho(); i++) {
+						if (counter.sumarization.obterElemento(i) != null) {
+							model.addRow(new Object[] { counter.sumarization.obterElemento(i).getTagName(),
+									counter.sumarization.obterElemento(i).getTagCounter() });
+						}
 					}
 					editorPane.setText("O arquivo está bem formatado");
 				} catch (Exception ex) {

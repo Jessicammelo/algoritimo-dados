@@ -3,13 +3,15 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
+import lista02.ListaEstatica;
+import lista03.ListaEncadeada;
 import lista05.Pilha;
 import lista05.PilhaVaziaException;
 import model.TagSumarization;
 
 public class TagCounter {
 
-	public List<TagSumarization> sumarization = new ArrayList<TagSumarization>();
+	public ListaEstatica<TagSumarization> sumarization = new ListaEstatica<TagSumarization>();
 
 	private String firstTag = null;
 
@@ -26,14 +28,14 @@ public class TagCounter {
 			if (childTag != null && tag.equals(childTag)) {
 				firstTag = tag;
 				boolean hasTag = false;
-				for (int i = 0; i < sumarization.size(); i++) {
-					if (sumarization.get(i).getTagName().equals(tag)) {
-						sumarization.get(i).setTagCounter(sumarization.get(i).getTagCounter() + 1);
+				for (int i = 0; i < sumarization.getTamanho(); i++) {
+					if (sumarization.obterElemento(i).getTagName().equals(tag)) {
+						sumarization.obterElemento(i).setTagCounter(sumarization.obterElemento(i).getTagCounter() + 1);
 						hasTag = true;
 					}
 				}
 				if (!hasTag) {
-					sumarization.add(new TagSumarization(tag, 1));
+					sumarization.inserir(new TagSumarization(tag, 1));
 				}
 			}
 			while (!tag.equals(childTag)) {
