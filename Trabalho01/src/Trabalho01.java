@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import core.HTMLParser;
 import core.ReadFile;
 import core.TagCounter;
-import model.TagSumarization;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -21,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Trabalho01 extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
