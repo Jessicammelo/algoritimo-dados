@@ -3,6 +3,8 @@ package lista08;
 public class NoArvore<T> {
 
 	private T info;
+	private NoArvore<T> primeiro;
+	private NoArvore<T> proximo;
 	
 	public T NoArvore(T info) {
 		return info;	
