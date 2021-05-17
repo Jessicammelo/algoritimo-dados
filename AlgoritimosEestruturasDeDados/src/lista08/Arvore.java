@@ -2,33 +2,64 @@ package lista08;
 
 public class Arvore<T> {
 
-	public T Arvore() {
-		return Arvore();
+	private NoArvore<T> raiz;
+
+	public Arvore() {
+		raiz = null;
 	}
 
 	public void setRaiz(NoArvore<T> raiz) {
-
+		this.raiz = raiz;
 	}
 
 	public NoArvore<T> getRaiz() {
-		return getRaiz();
+		return raiz;
 	}
 
 	public String toString() {
-		return toString();
+		if (raiz != null) {
+			return obterRepresentacaoTextual(raiz);
+		} else {
+			return "";
+		}
 	}
 
 	private String obterRepresentacaoTextual(NoArvore<T> no) {
-		return toString();
+		NoArvore<T> p;
+		String s = "<";
+		s += no.getInfo();
+		p = no.getPrimeiro();
+
+		while (p != null) {
+			s += obterRepresentacaoTextual(p);
+			p = p.getProximo();
+		}
+		s += ">";
+		return s;
 	}
 
-	public NoArvore<T> pertence(T info) {
-		if (raiz == null)
-			return getRaiz();
+	public Boolean pertence(T info) {
+		if (raiz == null) {
+			return false;
+		} else {
+			return pertence(raiz, info);
+		}
 	}
 
-	private NoArvore<T> pertence(NoArvore<T> no, T info) {
-		return getRaiz();
+	private Boolean pertence(NoArvore<T> no, T info) {
+		if (no.getInfo().equals(info)) {
+			return true;
+		} else {
+			NoArvore<T> p = no.getPrimeiro();
+			while (p != null) {
+				if (pertence(p, info)) {
+					return true;
+				} else {
+					p = p.getProximo();
+				}
+			}
+		}
+		return false;
 	}
 
 	public int contaNos() {
@@ -40,6 +71,12 @@ public class Arvore<T> {
 	}
 
 	private int contarNos(NoArvore<T> no) {
-		return contaNos();
+		int quant = 1;
+		NoArvore<T> p = no.getPrimeiro();
+		while ( p != null) {
+			quant += contarNos(p);
+			p = p.getProximo();
+		}
+		return quant;
 	}
 }
