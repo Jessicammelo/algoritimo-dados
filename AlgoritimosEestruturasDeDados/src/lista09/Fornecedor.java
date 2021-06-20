@@ -22,5 +22,8 @@ public class Fornecedor {
 		this.cnpj = cnpj;
 	}
 	
+	public int compareTo(Fornecedor o) {
+		return this.getCnpj().compareTo(o.getCnpj());
+	}
 	
 }

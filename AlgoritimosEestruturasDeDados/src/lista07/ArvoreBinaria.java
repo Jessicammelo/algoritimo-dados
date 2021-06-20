@@ -2,16 +2,30 @@ package lista07;
 
 public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
 
+	public ArvoreBinaria(T info) {
+		super(info);
+	}
+
 	private NoArvoreBinaria<T> raiz;
 
 	private int tamanho;
 
 	private int info;
-
-	public ArvoreBinaria() {
-		raiz = null;
+	
+	public boolean isDegenerada() {
+		NoArvoreBinaria<T> no = raiz;
+		if (no.getDireita() != null) {
+			return false;
+		}
+		while (no.getEsquerda() != null) {
+			no = no.getEsquerda();
+			if (no.getDireita() != null) {
+				return false;
+			}
+		}
+		return true;
 	}
-
+	
 	public NoArvoreBinaria<T> getRaiz() {
 		return raiz;
 	}

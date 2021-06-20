@@ -1,23 +1,24 @@
 package lista09;
 
-public class ListaEstatica extends ListaAbstract {
+public class ListaEstatica<T> extends ListaAbstract<T> {
 
-	@Override
-	void inserir(Object valor) {
-		if (tamanho == info.length) {
+	public void inserir(T dado) {
+		if (getTamanho() == getLimite()) {
 			redimensionar();
 		}
-		info[tamanho] = valor;
-		tamanho++;
+		T[] info = getInfo();
+		info[getTamanho()] = dado;
+		setTamanho(getTamanho() + 1);
+
 	}
 
-	@Override
-	int buscar(Object valor) {
-		for (int i = 0; i < tamanho; i++) {
-			if (info[i] == valor) {
+	public int buscar(T dado) {
+		T[] info = getInfo();
+		for (int i = 0; i < getTamanho(); i++) {
+			if (info[i].equals(dado)) {
 				return i;
 			}
 		}
-		return tamanho;
+		return -1;
 	}
 }

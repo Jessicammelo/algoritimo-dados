@@ -7,7 +7,7 @@ public class ArvoreBinariaAbstract<T> {
 	private NoArvoreBinaria<T> raiz;
 
 	public ArvoreBinariaAbstract() {
-
+		raiz = null;
 	}
 
 	protected void setRaiz(NoArvoreBinaria<T> raiz) {
@@ -26,9 +26,9 @@ public class ArvoreBinariaAbstract<T> {
 		return false;
 	}
 
-	public NoArvoreBinaria<T> buscar(T info) {
-		return raiz;
-	}
+	//public abstract NoArvoreBinaria<T> buscar(T info){
+		
+	//}
 
 	private String arvorePre(NoArvoreBinaria<T> no) {
 		return toString();
